@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Post by {{ post['author'] }}{% endblock %}
+{% block content %}
+  {% include "_post.html" %}
+
+  <h2>Comments</h2>
+  {% if g.user %}
+    <form method="post" action="{{ url_for('posts.add_comment', post_id=post['id']) }}" class="card">
+      <input type="hidden" name="next" value="{{ request.path }}">
+      <label for="content">Add a comment</label>
+      <textarea name="content" id="content" rows="2" required></textarea>
+      <button type="submit">Comment</button>
+    </form>
+  {% endif %}
+
+  <ul class="comments">
+    {% for comment in comments %}
+      <li class="comment">
+        <a href="{{ url_for('posts.profile', username=comment['author']) }}">{{ comment['author'] }}</a>
+        <span class="comment-content">{{ comment['content'] }}</span>
+        <time>{{ comment['created_at'] }}</time>
+      </li>
+    {% else %}
+      <li>No comments yet.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

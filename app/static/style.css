@@ -1,0 +1,221 @@
+:root {
+  --bg: #f5f6f8;
+  --card-bg: #ffffff;
+  --text: #1c1e21;
+  --muted: #65676b;
+  --accent: #1877f2;
+  --border: #dddfe2;
+  --error: #d93025;
+  --success: #1b873f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--card-bg);
+  padding: 0.75rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+header .brand {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+header nav a {
+  margin-left: 1rem;
+  color: var(--text);
+  text-decoration: none;
+}
+
+header nav a:hover {
+  text-decoration: underline;
+}
+
+main {
+  max-width: 640px;
+  margin: 1.5rem auto;
+  padding: 0 1rem;
+}
+
+h1 {
+  font-size: 1.4rem;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+form.card label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+button {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+.inline-form {
+  display: inline;
+}
+
+.post {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.post-header a {
+  color: var(--text);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.post-content {
+  margin: 0.5rem 0;
+  white-space: pre-wrap;
+}
+
+.post-footer {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.like-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 20px;
+  padding: 0.25rem 0.75rem;
+}
+
+.like-btn.liked {
+  color: #e0245e;
+  border-color: #e0245e;
+}
+
+.post-footer a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.flashes {
+  list-style: none;
+  padding: 0;
+}
+
+.flash {
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+}
+
+.flash-error {
+  background: #fce8e6;
+  color: var(--error);
+}
+
+.flash-success {
+  background: #e6f4ea;
+  color: var(--success);
+}
+
+.profile-header .stats {
+  color: var(--muted);
+}
+
+.suggestions ul {
+  list-style: none;
+  padding: 0;
+}
+
+.suggestions li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.35rem 0;
+}
+
+.comments {
+  list-style: none;
+  padding: 0;
+}
+
+.comment {
+  border-bottom: 1px solid var(--border);
+  padding: 0.5rem 0;
+}
+
+.comment a {
+  font-weight: 600;
+  margin-right: 0.5rem;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.comment time {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.pagination a {
+  color: var(--accent);
+  text-decoration: none;
+}

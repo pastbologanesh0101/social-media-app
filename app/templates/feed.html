@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Feed{% endblock %}
+{% block content %}
+  {% if g.user %}
+    <form method="post" action="{{ url_for('posts.create_post') }}" class="card">
+      <label for="content">Share something</label>
+      <textarea name="content" id="content" rows="3" required></textarea>
+      <button type="submit">Post</button>
+    </form>
+
+    {% if suggestions %}
+      <section class="card suggestions">
+        <h2>Suggested for you</h2>
+        <ul>
+          {% for s in suggestions %}
+            <li>
+              <a href="{{ url_for('posts.profile', username=s['username']) }}">{{ s['username'] }}</a>
+              <form method="post" action="{{ url_for('posts.follow', username=s['username']) }}" class="inline-form">
+                <button type="submit">Follow</button>
+              </form>
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
+    {% endif %}
+
+    <h1>Your feed</h1>
+    {% for post in posts %}
+      {% include "_post.html" %}
+    {% else %}
+      <p>Your feed is empty. Follow people or write your first post.</p>
+    {% endfor %}
+
+    <nav class="pagination">
+      {% if page > 1 %}
+        <a href="{{ url_for('posts.feed', page=page-1) }}">&laquo; Newer</a>
+      {% endif %}
+      {% if has_next %}
+        <a href="{{ url_for('posts.feed', page=page+1) }}">Older &raquo;</a>
+      {% endif %}
+    </nav>
+  {% else %}
+    <h1>Welcome to Social Media App</h1>
+    <p><a href="{{ url_for('auth.login') }}">Log in</a> or <a href="{{ url_for('auth.register') }}">register</a> to see your feed.</p>
+  {% endif %}
+{% endblock %}

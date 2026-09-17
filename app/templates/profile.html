@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}{{ profile_user['username'] }}{% endblock %}
+{% block content %}
+  <div class="profile-header card">
+    <h1>{{ profile_user['username'] }}</h1>
+    {% if profile_user['bio'] %}<p class="bio">{{ profile_user['bio'] }}</p>{% endif %}
+    <p class="stats">
+      <strong>{{ followers }}</strong> follower{{ '' if followers == 1 else 's' }}
+      &middot;
+      <strong>{{ following }}</strong> following
+    </p>
+
+    {% if g.user and g.user['username'] != profile_user['username'] %}
+      {% if viewer_follows %}
+        <form method="post" action="{{ url_for('posts.unfollow', username=profile_user['username']) }}">
+          <button type="submit">Unfollow</button>
+        </form>
+      {% else %}
+        <form method="post" action="{{ url_for('posts.follow', username=profile_user['username']) }}">
+          <button type="submit">Follow</button>
+        </form>
+      {% endif %}
+    {% endif %}
+  </div>
+
+  <h2>Posts</h2>
+  {% for post in posts %}
+    {% include "_post.html" %}
+  {% else %}
+    <p>No posts yet.</p>
+  {% endfor %}
+{% endblock %}

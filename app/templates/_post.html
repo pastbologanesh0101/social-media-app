@@ -1,0 +1,20 @@
+<article class="post">
+  <header class="post-header">
+    <a href="{{ url_for('posts.profile', username=post['author']) }}">{{ post['author'] }}</a>
+    <time>{{ post['created_at'] }}</time>
+  </header>
+  <p class="post-content">{{ post['content'] }}</p>
+  <footer class="post-footer">
+    {% if g.user %}
+      <form method="post" action="{{ url_for('posts.toggle_like', post_id=post['id']) }}" class="inline-form">
+        <input type="hidden" name="next" value="{{ request.path }}">
+        <button type="submit" class="like-btn {{ 'liked' if post['liked_by_viewer'] else '' }}">
+          {{ '♥' if post['liked_by_viewer'] else '♡' }} {{ post['like_count'] }}
+        </button>
+      </form>
+    {% else %}
+      <span>♡ {{ post['like_count'] }}</span>
+    {% endif %}
+    <a href="{{ url_for('posts.post_comments', post_id=post['id']) }}">{{ post['comment_count'] }} comment{{ '' if post['comment_count'] == 1 else 's' }}</a>
+  </footer>
+</article>
